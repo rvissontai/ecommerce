@@ -1,0 +1,1123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ecombaseModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="banner">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="banner_arquivos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_banner" Type="int" Nullable="false" />
+          <Property Name="imagem" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="carrinho">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente" Type="int" />
+          <Property Name="token" Type="varchar" MaxLength="20" />
+          <Property Name="data_cadastro" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="carrinho_produto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_carrinho" Type="int" Nullable="false" />
+          <Property Name="id_produto" Type="int" Nullable="false" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cidade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_estado" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_sexo" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="senha" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="data_cadastro" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="data_nascimento" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="cpf_cnpj" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="rg_ie" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="telefone" Type="varchar" MaxLength="45" />
+          <Property Name="telefone_celular" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="cliente_endereco">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente" Type="int" Nullable="false" />
+          <Property Name="id_estado" Type="int" Nullable="false" />
+          <Property Name="id_cidade" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cep" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="endereco" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="numero" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="complemento" Type="varchar" MaxLength="50" />
+          <Property Name="bairro" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="sigla" Type="varchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_log_tipo" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="mensagem" Type="varchar" MaxLength="8000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="log_tipo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_menu" Type="int" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pedido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente" Type="int" Nullable="false" />
+          <Property Name="data_cadastro" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pedido_produto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pedido" Type="int" Nullable="false" />
+          <Property Name="id_produto" Type="int" Nullable="false" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="preco" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="produto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="preco" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="produto_imagem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_produto" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="ativo" Type="bit" Nullable="false" />
+          <Property Name="padrao" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sexo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_banner">
+          <End Role="banner" Type="Self.banner" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="banner_arquivos" Type="Self.banner_arquivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="banner">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="banner_arquivos">
+              <PropertyRef Name="id_banner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_carrinho_carrinho_produto">
+          <End Role="carrinho" Type="Self.carrinho" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="carrinho_produto" Type="Self.carrinho_produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="carrinho">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="carrinho_produto">
+              <PropertyRef Name="id_carrinho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cidade_cliente_endereco">
+          <End Role="cidade" Type="Self.cidade" Multiplicity="1" />
+          <End Role="cliente_endereco" Type="Self.cliente_endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cidade">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cliente_endereco">
+              <PropertyRef Name="id_cidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cliente_carrinho">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="carrinho" Type="Self.carrinho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="carrinho">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cliente_pedido">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pedido">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cliente_sexo1">
+          <End Role="sexo" Type="Self.sexo" Multiplicity="1" />
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sexo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="id_sexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_estado">
+          <End Role="estado" Type="Self.estado" Multiplicity="1" />
+          <End Role="cidade" Type="Self.cidade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cidade">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_estado_cliente_endereco">
+          <End Role="estado" Type="Self.estado" Multiplicity="1" />
+          <End Role="cliente_endereco" Type="Self.cliente_endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cliente_endereco">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_id_cliente_cliente_endereco">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="cliente_endereco" Type="Self.cliente_endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cliente_endereco">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_log_log_tipo">
+          <End Role="log_tipo" Type="Self.log_tipo" Multiplicity="1" />
+          <End Role="log" Type="Self.log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="log_tipo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="log">
+              <PropertyRef Name="id_log_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_menu_pai">
+          <End Role="menu" Type="Self.menu" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="menu1" Type="Self.menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="menu1">
+              <PropertyRef Name="id_menu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pedido_pedido">
+          <End Role="pedido" Type="Self.pedido" Multiplicity="1" />
+          <End Role="pedido_produto" Type="Self.pedido_produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedido">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pedido_produto">
+              <PropertyRef Name="id_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_produto_carrinho_produto">
+          <End Role="produto" Type="Self.produto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="carrinho_produto" Type="Self.carrinho_produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="carrinho_produto">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_produto_pedido">
+          <End Role="produto" Type="Self.produto" Multiplicity="1" />
+          <End Role="pedido_produto" Type="Self.pedido_produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pedido_produto">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_produto_produto_imagem">
+          <End Role="produto" Type="Self.produto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="produto_imagem" Type="Self.produto_imagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="produto_imagem">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ecombaseModelStoreContainer">
+          <EntitySet Name="banner" EntityType="Self.banner" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="banner_arquivos" EntityType="Self.banner_arquivos" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="carrinho" EntityType="Self.carrinho" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="carrinho_produto" EntityType="Self.carrinho_produto" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="cidade" EntityType="Self.cidade" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="cliente_endereco" EntityType="Self.cliente_endereco" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="estado" EntityType="Self.estado" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="log" EntityType="Self.log" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="log_tipo" EntityType="Self.log_tipo" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="menu" EntityType="Self.menu" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="pedido" EntityType="Self.pedido" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="pedido_produto" EntityType="Self.pedido_produto" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="produto" EntityType="Self.produto" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="produto_imagem" EntityType="Self.produto_imagem" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="sexo" EntityType="Self.sexo" Schema="ecombase" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="ecombase" store:Type="Tables" />
+          <AssociationSet Name="fk_banner" Association="Self.fk_banner">
+            <End Role="banner" EntitySet="banner" />
+            <End Role="banner_arquivos" EntitySet="banner_arquivos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_carrinho_carrinho_produto" Association="Self.fk_carrinho_carrinho_produto">
+            <End Role="carrinho" EntitySet="carrinho" />
+            <End Role="carrinho_produto" EntitySet="carrinho_produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cidade_cliente_endereco" Association="Self.fk_cidade_cliente_endereco">
+            <End Role="cidade" EntitySet="cidade" />
+            <End Role="cliente_endereco" EntitySet="cliente_endereco" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cliente_carrinho" Association="Self.fk_cliente_carrinho">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="carrinho" EntitySet="carrinho" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cliente_pedido" Association="Self.fk_cliente_pedido">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="pedido" EntitySet="pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cliente_sexo1" Association="Self.fk_cliente_sexo1">
+            <End Role="sexo" EntitySet="sexo" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_estado" Association="Self.fk_estado">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="cidade" EntitySet="cidade" />
+          </AssociationSet>
+          <AssociationSet Name="fk_estado_cliente_endereco" Association="Self.fk_estado_cliente_endereco">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="cliente_endereco" EntitySet="cliente_endereco" />
+          </AssociationSet>
+          <AssociationSet Name="fk_id_cliente_cliente_endereco" Association="Self.fk_id_cliente_cliente_endereco">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="cliente_endereco" EntitySet="cliente_endereco" />
+          </AssociationSet>
+          <AssociationSet Name="fk_log_log_tipo" Association="Self.fk_log_log_tipo">
+            <End Role="log_tipo" EntitySet="log_tipo" />
+            <End Role="log" EntitySet="log" />
+          </AssociationSet>
+          <AssociationSet Name="fk_menu_pai" Association="Self.fk_menu_pai">
+            <End Role="menu" EntitySet="menu" />
+            <End Role="menu1" EntitySet="menu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pedido_pedido" Association="Self.fk_pedido_pedido">
+            <End Role="pedido" EntitySet="pedido" />
+            <End Role="pedido_produto" EntitySet="pedido_produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_produto_carrinho_produto" Association="Self.fk_produto_carrinho_produto">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="carrinho_produto" EntitySet="carrinho_produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_produto_pedido" Association="Self.fk_produto_pedido">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="pedido_produto" EntitySet="pedido_produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_produto_produto_imagem" Association="Self.fk_produto_produto_imagem">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="produto_imagem" EntitySet="produto_imagem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ecombaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="banner">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="banner_arquivos" Relationship="Self.fk_banner" FromRole="banner" ToRole="banner_arquivos" />
+        </EntityType>
+        <EntityType Name="banner_arquivos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_banner" Type="Int32" Nullable="false" />
+          <Property Name="imagem" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="banner" Relationship="Self.fk_banner" FromRole="banner_arquivos" ToRole="banner" />
+        </EntityType>
+        <EntityType Name="carrinho">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_cliente" Type="Int32" />
+          <Property Name="token" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="data_cadastro" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="carrinho_produto" Relationship="Self.fk_carrinho_carrinho_produto" FromRole="carrinho" ToRole="carrinho_produto" />
+          <NavigationProperty Name="cliente" Relationship="Self.fk_cliente_carrinho" FromRole="carrinho" ToRole="cliente" />
+        </EntityType>
+        <EntityType Name="carrinho_produto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_carrinho" Type="Int32" Nullable="false" />
+          <Property Name="id_produto" Type="Int32" Nullable="false" />
+          <Property Name="quantidade" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="carrinho" Relationship="Self.fk_carrinho_carrinho_produto" FromRole="carrinho_produto" ToRole="carrinho" />
+          <NavigationProperty Name="produto" Relationship="Self.fk_produto_carrinho_produto" FromRole="carrinho_produto" ToRole="produto" />
+        </EntityType>
+        <EntityType Name="cidade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_estado" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cliente_endereco" Relationship="Self.fk_cidade_cliente_endereco" FromRole="cidade" ToRole="cliente_endereco" />
+          <NavigationProperty Name="estado" Relationship="Self.fk_estado" FromRole="cidade" ToRole="estado" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_sexo" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="senha" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="data_cadastro" Type="DateTime" Nullable="false" />
+          <Property Name="data_nascimento" Type="DateTime" Nullable="false" />
+          <Property Name="cpf_cnpj" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rg_ie" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="telefone_celular" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="carrinho" Relationship="Self.fk_cliente_carrinho" FromRole="cliente" ToRole="carrinho" />
+          <NavigationProperty Name="pedido" Relationship="Self.fk_cliente_pedido" FromRole="cliente" ToRole="pedido" />
+          <NavigationProperty Name="sexo" Relationship="Self.fk_cliente_sexo1" FromRole="cliente" ToRole="sexo" />
+          <NavigationProperty Name="cliente_endereco" Relationship="Self.fk_id_cliente_cliente_endereco" FromRole="cliente" ToRole="cliente_endereco" />
+        </EntityType>
+        <EntityType Name="cliente_endereco">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="id_estado" Type="Int32" Nullable="false" />
+          <Property Name="id_cidade" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cep" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="endereco" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="complemento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bairro" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cidade" Relationship="Self.fk_cidade_cliente_endereco" FromRole="cliente_endereco" ToRole="cidade" />
+          <NavigationProperty Name="cliente" Relationship="Self.fk_id_cliente_cliente_endereco" FromRole="cliente_endereco" ToRole="cliente" />
+          <NavigationProperty Name="estado" Relationship="Self.fk_estado_cliente_endereco" FromRole="cliente_endereco" ToRole="estado" />
+        </EntityType>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sigla" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cidade" Relationship="Self.fk_estado" FromRole="estado" ToRole="cidade" />
+          <NavigationProperty Name="cliente_endereco" Relationship="Self.fk_estado_cliente_endereco" FromRole="estado" ToRole="cliente_endereco" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_menu" Type="Int32" />
+          <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="menu1" Relationship="Self.fk_menu_pai" FromRole="menu" ToRole="menu1" />
+          <NavigationProperty Name="menu2" Relationship="Self.fk_menu_pai" FromRole="menu1" ToRole="menu" />
+        </EntityType>
+        <EntityType Name="pedido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="data_cadastro" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.fk_cliente_pedido" FromRole="pedido" ToRole="cliente" />
+          <NavigationProperty Name="pedido_produto" Relationship="Self.fk_pedido_pedido" FromRole="pedido" ToRole="pedido_produto" />
+        </EntityType>
+        <EntityType Name="pedido_produto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_pedido" Type="Int32" Nullable="false" />
+          <Property Name="id_produto" Type="Int32" Nullable="false" />
+          <Property Name="quantidade" Type="Int32" Nullable="false" />
+          <Property Name="preco" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="pedido" Relationship="Self.fk_pedido_pedido" FromRole="pedido_produto" ToRole="pedido" />
+          <NavigationProperty Name="produto" Relationship="Self.fk_produto_pedido" FromRole="pedido_produto" ToRole="produto" />
+        </EntityType>
+        <EntityType Name="produto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descricao" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="preco" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="carrinho_produto" Relationship="Self.fk_produto_carrinho_produto" FromRole="produto" ToRole="carrinho_produto" />
+          <NavigationProperty Name="pedido_produto" Relationship="Self.fk_produto_pedido" FromRole="produto" ToRole="pedido_produto" />
+          <NavigationProperty Name="produto_imagem" Relationship="Self.fk_produto_produto_imagem" FromRole="produto" ToRole="produto_imagem" />
+        </EntityType>
+        <EntityType Name="produto_imagem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_produto" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ativo" Type="Boolean" Nullable="false" />
+          <Property Name="padrao" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="produto" Relationship="Self.fk_produto_produto_imagem" FromRole="produto_imagem" ToRole="produto" />
+        </EntityType>
+        <EntityType Name="sexo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.fk_cliente_sexo1" FromRole="sexo" ToRole="cliente" />
+        </EntityType>
+        <Association Name="fk_banner">
+          <End Role="banner" Type="Self.banner" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="banner_arquivos" Type="Self.banner_arquivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="banner">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="banner_arquivos">
+              <PropertyRef Name="id_banner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_carrinho_carrinho_produto">
+          <End Role="carrinho" Type="Self.carrinho" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="carrinho_produto" Type="Self.carrinho_produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="carrinho">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="carrinho_produto">
+              <PropertyRef Name="id_carrinho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cliente_carrinho">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="carrinho" Type="Self.carrinho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="carrinho">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_produto_carrinho_produto">
+          <End Role="produto" Type="Self.produto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="carrinho_produto" Type="Self.carrinho_produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="carrinho_produto">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cidade_cliente_endereco">
+          <End Role="cidade" Type="Self.cidade" Multiplicity="1" />
+          <End Role="cliente_endereco" Type="Self.cliente_endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cidade">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cliente_endereco">
+              <PropertyRef Name="id_cidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_estado">
+          <End Role="estado" Type="Self.estado" Multiplicity="1" />
+          <End Role="cidade" Type="Self.cidade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cidade">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cliente_pedido">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pedido">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cliente_sexo1">
+          <End Role="sexo" Type="Self.sexo" Multiplicity="1" />
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sexo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="id_sexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_id_cliente_cliente_endereco">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="cliente_endereco" Type="Self.cliente_endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cliente_endereco">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_estado_cliente_endereco">
+          <End Role="estado" Type="Self.estado" Multiplicity="1" />
+          <End Role="cliente_endereco" Type="Self.cliente_endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cliente_endereco">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_menu_pai">
+          <End Role="menu" Type="Self.menu" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="menu1" Type="Self.menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="menu1">
+              <PropertyRef Name="id_menu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_pedido_pedido">
+          <End Role="pedido" Type="Self.pedido" Multiplicity="1" />
+          <End Role="pedido_produto" Type="Self.pedido_produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedido">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pedido_produto">
+              <PropertyRef Name="id_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_produto_pedido">
+          <End Role="produto" Type="Self.produto" Multiplicity="1" />
+          <End Role="pedido_produto" Type="Self.pedido_produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pedido_produto">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_produto_produto_imagem">
+          <End Role="produto" Type="Self.produto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="produto_imagem" Type="Self.produto_imagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="produto_imagem">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ecombaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="banner" EntityType="Self.banner" />
+          <EntitySet Name="banner_arquivos" EntityType="Self.banner_arquivos" />
+          <EntitySet Name="carrinho" EntityType="Self.carrinho" />
+          <EntitySet Name="carrinho_produto" EntityType="Self.carrinho_produto" />
+          <EntitySet Name="cidade" EntityType="Self.cidade" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" />
+          <EntitySet Name="cliente_endereco" EntityType="Self.cliente_endereco" />
+          <EntitySet Name="estado" EntityType="Self.estado" />
+          <EntitySet Name="menu" EntityType="Self.menu" />
+          <EntitySet Name="pedido" EntityType="Self.pedido" />
+          <EntitySet Name="pedido_produto" EntityType="Self.pedido_produto" />
+          <EntitySet Name="produto" EntityType="Self.produto" />
+          <EntitySet Name="produto_imagem" EntityType="Self.produto_imagem" />
+          <EntitySet Name="sexo" EntityType="Self.sexo" />
+          <AssociationSet Name="fk_banner" Association="Self.fk_banner">
+            <End Role="banner" EntitySet="banner" />
+            <End Role="banner_arquivos" EntitySet="banner_arquivos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_carrinho_carrinho_produto" Association="Self.fk_carrinho_carrinho_produto">
+            <End Role="carrinho" EntitySet="carrinho" />
+            <End Role="carrinho_produto" EntitySet="carrinho_produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cliente_carrinho" Association="Self.fk_cliente_carrinho">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="carrinho" EntitySet="carrinho" />
+          </AssociationSet>
+          <AssociationSet Name="fk_produto_carrinho_produto" Association="Self.fk_produto_carrinho_produto">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="carrinho_produto" EntitySet="carrinho_produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cidade_cliente_endereco" Association="Self.fk_cidade_cliente_endereco">
+            <End Role="cidade" EntitySet="cidade" />
+            <End Role="cliente_endereco" EntitySet="cliente_endereco" />
+          </AssociationSet>
+          <AssociationSet Name="fk_estado" Association="Self.fk_estado">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="cidade" EntitySet="cidade" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cliente_pedido" Association="Self.fk_cliente_pedido">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="pedido" EntitySet="pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cliente_sexo1" Association="Self.fk_cliente_sexo1">
+            <End Role="sexo" EntitySet="sexo" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_id_cliente_cliente_endereco" Association="Self.fk_id_cliente_cliente_endereco">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="cliente_endereco" EntitySet="cliente_endereco" />
+          </AssociationSet>
+          <AssociationSet Name="fk_estado_cliente_endereco" Association="Self.fk_estado_cliente_endereco">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="cliente_endereco" EntitySet="cliente_endereco" />
+          </AssociationSet>
+          <AssociationSet Name="fk_menu_pai" Association="Self.fk_menu_pai">
+            <End Role="menu" EntitySet="menu" />
+            <End Role="menu1" EntitySet="menu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_pedido_pedido" Association="Self.fk_pedido_pedido">
+            <End Role="pedido" EntitySet="pedido" />
+            <End Role="pedido_produto" EntitySet="pedido_produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_produto_pedido" Association="Self.fk_produto_pedido">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="pedido_produto" EntitySet="pedido_produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_produto_produto_imagem" Association="Self.fk_produto_produto_imagem">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="produto_imagem" EntitySet="produto_imagem" />
+          </AssociationSet>
+          <EntitySet Name="usuario" EntityType="ecombaseModel.usuario" />
+          <EntitySet Name="log" EntityType="ecombaseModel.log" />
+          <EntitySet Name="log_tipo" EntityType="ecombaseModel.log_tipo" />
+          <AssociationSet Name="fk_log_log_tipo" Association="ecombaseModel.fk_log_log_tipo">
+            <End Role="log_tipo" EntitySet="log_tipo" />
+            <End Role="log" EntitySet="log" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="ativo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_log_tipo" Type="Int32" Nullable="false" />
+          <Property Name="titulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mensagem" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="log_tipo" Relationship="ecombaseModel.fk_log_log_tipo" FromRole="log" ToRole="log_tipo" />
+        </EntityType>
+        <EntityType Name="log_tipo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="log" Relationship="ecombaseModel.fk_log_log_tipo" FromRole="log_tipo" ToRole="log" />
+        </EntityType>
+        <Association Name="fk_log_log_tipo">
+          <End Type="ecombaseModel.log_tipo" Role="log_tipo" Multiplicity="1" />
+          <End Type="ecombaseModel.log" Role="log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="log_tipo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="log">
+              <PropertyRef Name="id_log_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ecombaseModelStoreContainer" CdmEntityContainer="ecombaseEntities">
+          <EntitySetMapping Name="banner">
+            <EntityTypeMapping TypeName="ecombaseModel.banner">
+              <MappingFragment StoreEntitySet="banner">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="banner_arquivos">
+            <EntityTypeMapping TypeName="ecombaseModel.banner_arquivos">
+              <MappingFragment StoreEntitySet="banner_arquivos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_banner" ColumnName="id_banner" />
+                <ScalarProperty Name="imagem" ColumnName="imagem" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="carrinho">
+            <EntityTypeMapping TypeName="ecombaseModel.carrinho">
+              <MappingFragment StoreEntitySet="carrinho">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="data_cadastro" ColumnName="data_cadastro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="carrinho_produto">
+            <EntityTypeMapping TypeName="ecombaseModel.carrinho_produto">
+              <MappingFragment StoreEntitySet="carrinho_produto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_carrinho" ColumnName="id_carrinho" />
+                <ScalarProperty Name="id_produto" ColumnName="id_produto" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cidade">
+            <EntityTypeMapping TypeName="ecombaseModel.cidade">
+              <MappingFragment StoreEntitySet="cidade">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="ecombaseModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_sexo" ColumnName="id_sexo" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+                <ScalarProperty Name="data_cadastro" ColumnName="data_cadastro" />
+                <ScalarProperty Name="data_nascimento" ColumnName="data_nascimento" />
+                <ScalarProperty Name="cpf_cnpj" ColumnName="cpf_cnpj" />
+                <ScalarProperty Name="rg_ie" ColumnName="rg_ie" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="telefone_celular" ColumnName="telefone_celular" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cliente_endereco">
+            <EntityTypeMapping TypeName="ecombaseModel.cliente_endereco">
+              <MappingFragment StoreEntitySet="cliente_endereco">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="id_cidade" ColumnName="id_cidade" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cep" ColumnName="cep" />
+                <ScalarProperty Name="endereco" ColumnName="endereco" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estado">
+            <EntityTypeMapping TypeName="ecombaseModel.estado">
+              <MappingFragment StoreEntitySet="estado">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="sigla" ColumnName="sigla" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menu">
+            <EntityTypeMapping TypeName="ecombaseModel.menu">
+              <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_menu" ColumnName="id_menu" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pedido">
+            <EntityTypeMapping TypeName="ecombaseModel.pedido">
+              <MappingFragment StoreEntitySet="pedido">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="data_cadastro" ColumnName="data_cadastro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pedido_produto">
+            <EntityTypeMapping TypeName="ecombaseModel.pedido_produto">
+              <MappingFragment StoreEntitySet="pedido_produto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+                <ScalarProperty Name="id_produto" ColumnName="id_produto" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="preco" ColumnName="preco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="produto">
+            <EntityTypeMapping TypeName="ecombaseModel.produto">
+              <MappingFragment StoreEntitySet="produto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="preco" ColumnName="preco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="produto_imagem">
+            <EntityTypeMapping TypeName="ecombaseModel.produto_imagem">
+              <MappingFragment StoreEntitySet="produto_imagem">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_produto" ColumnName="id_produto" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="padrao" ColumnName="padrao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sexo">
+            <EntityTypeMapping TypeName="ecombaseModel.sexo">
+              <MappingFragment StoreEntitySet="sexo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="ecombaseModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="log">
+            <EntityTypeMapping TypeName="ecombaseModel.log">
+              <MappingFragment StoreEntitySet="log">
+                <ScalarProperty Name="mensagem" ColumnName="mensagem" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="id_log_tipo" ColumnName="id_log_tipo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="log_tipo">
+            <EntityTypeMapping TypeName="ecombaseModel.log_tipo">
+              <MappingFragment StoreEntitySet="log_tipo">
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

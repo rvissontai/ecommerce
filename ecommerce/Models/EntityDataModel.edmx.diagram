@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="225d845e5e1743dc95b8322e27d41554" Name="Diagram1">
+        <EntityTypeShape EntityType="ecombaseModel.banner" Width="1.625" PointX="12.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.banner_arquivos" Width="1.625" PointX="12.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.carrinho" Width="1.5" PointX="4.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.carrinho_produto" Width="1.5" PointX="7.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.cidade" Width="1.5" PointX="0.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.cliente" Width="1.5" PointX="2.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.cliente_endereco" Width="1.5" PointX="2.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.estado" Width="1.5" PointX="0.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.menu" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.pedido" Width="1.5" PointX="4.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.pedido_produto" Width="1.5" PointX="7.125" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.produto" Width="1.5" PointX="9.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.produto_imagem" Width="1.5" PointX="11.125" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecombaseModel.sexo" Width="1.5" PointX="0.5" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="ecombaseModel.fk_banner" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_carrinho_carrinho_produto" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_cliente_carrinho" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_produto_carrinho_produto" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_cidade_cliente_endereco" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_estado" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_cliente_pedido" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_cliente_sexo1" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_id_cliente_cliente_endereco" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_estado_cliente_endereco" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_menu_pai" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_pedido_pedido" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_produto_pedido" ManuallyRouted="false" />
+        <AssociationConnector Association="ecombaseModel.fk_produto_produto_imagem" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ecombaseModel.usuario" Width="1.5" PointX="13" PointY="5.5" />
+        <EntityTypeShape EntityType="ecombaseModel.log" Width="1.5" PointX="10.875" PointY="6.625" />
+        <EntityTypeShape EntityType="ecombaseModel.log_tipo" Width="1.5" PointX="10.875" PointY="9.25" />
+        <AssociationConnector Association="ecombaseModel.fk_log_log_tipo" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
